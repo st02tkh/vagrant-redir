@@ -69,16 +69,16 @@ will show:
 
 ```shell
 Port forwarding configuration for VM 'xdg':
- guest: 8000, host: 8900, host_ip: 0.0.0.0, protocol: tcp
- guest: 8001, host: 8901, host_ip: 0.0.0.0, protocol: tcp
- guest: 80, host: 8908, host_ip: 0.0.0.0, protocol: tcp
- guest: 22, host: 8902, host_ip: 0.0.0.0, protocol: tcp
+ guest: 8000; host: 8900; host_ip: 0.0.0.0; protocol: tcp
+ guest: 8001; host: 8901; host_ip: 0.0.0.0; protocol: tcp
+ guest: 80; host: 8908; host_ip: 0.0.0.0; protocol: tcp
+ guest: 22; host: 8902; host_ip: 0.0.0.0; protocol: tcp
 
 Port forwarding configuration for VM 'db1':
- guest: 8000, host: 9000, host_ip: 0.0.0.0, protocol: tcp
- guest: 8001, host: 9001, host_ip: 0.0.0.0, protocol: tcp
- guest: 80, host: 9080, host_ip: 0.0.0.0, protocol: tcp
- guest: 22, host: 9022, host_ip: 0.0.0.0, protocol: tcp
+ guest: 8000; host: 9000; host_ip: 0.0.0.0; protocol: tcp
+ guest: 8001; host: 9001; host_ip: 0.0.0.0; protocol: tcp
+ guest: 80; host: 9080; host_ip: 0.0.0.0; protocol: tcp
+ guest: 22; host: 9022; host_ip: 0.0.0.0; protocol: tcp
 ```
 or for particular VM:
 
@@ -189,10 +189,27 @@ $ vagrant redir ps [<name>]
 
 ### status
 
-Show list of running redir processes by stored pids
+Show list of running redir processes by stored pids.
+This command cleans up inactive stored pids and shows only running ones. 
 
 ```shell
 $ vagrant redir status
+```
+
+will show:
+
+```shell
+List of running redir processes for VM 'xdb' by stored pids:
+ pid: 22351; host_port: 8901; is_system_port: false
+ pid: 22365; host_port: 8908; is_system_port: false
+ pid: 22379; host_port: 8902; is_system_port: false
+ pid: 22337; host_port: 8900; is_system_port: false
+
+List of running redir processes for VM 'db' by stored pids:
+ pid: 22412; host_port: 9000; is_system_port: false
+ pid: 22440; host_port: 9080; is_system_port: false
+ pid: 22426; host_port: 9001; is_system_port: false
+ pid: 22454; host_port: 9022; is_system_port: false
 ```
 
 
