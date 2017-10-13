@@ -1,0 +1,21 @@
+en:
+  vagrant_redir:
+    command:
+      addr:
+        list_title: "List of VM(s) public IP addresses:"
+        list_item: " id: %{id} name: %{name} ip: %{ip}"
+      config:
+        list_title: "Port forwarding configuration for VM '%{name}':"
+      down:
+        shutting_down_vm: "Shutting down redir processes for VM '%{name}' ..."
+      pids:
+        list_title: "List of stored redir's pids of VM '%{name}':"
+        list_item: " pid: %{pid}; host_port: %{host_port}; is_system_port: %{is_system_port}; is_running: %{is_running}"
+      ps:
+        list_title: "List of running redir's pids for VM '%{name}' grepped by public IP:"
+        list_item: " pid: %{pid}; host_port: %{host_port}; is_system_port: %{is_system_port}"
+      status:
+        list_title: "List of running redir processes for VM '%{name}' by stored pids:"
+        list_item: " pid: %{pid}; host_port: %{host_port}; is_system_port: %{is_system_port}"
+      up:
+        list_title: "Setting up port forwarding for VM '%{name}':"

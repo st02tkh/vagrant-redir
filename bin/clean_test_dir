@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+
+this_dir="$(cd $(dirname "$0") && pwd)"
+proj_dir="$(cd "$this_dir/.." && pwd)"
+find "$proj_dir" -maxdepth 1 -type l -delete

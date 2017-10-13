@@ -1,0 +1,39 @@
+#! /usr/bin/env bash
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 TGT_DIR"
+    echo "       TGT_DIR - a directory with Vagrantfile"
+    exit 100
+fi
+
+except_list=".git .gitignore .gitmodules bin lib spec Gemfile Gemfile.lock README README.md Puppetfile redir_map locales"
+
+this_dir="$(cd $(dirname "$0") && pwd)"
+proj_dir="$(cd "$this_dir/.." && pwd)"
+tgt_dir="$(cd "$1" && pwd)"
+
+function list_include_item {
+  local list="$1"
+  local item="$2"
+  if [[ $list =~ (^|[[:space:]])"$item"($|[[:space:]]) ]] ; then
+    # yes, list include item
+    result=0
+  else
+    result=1
+  fi
+  return $result
+}
+
+find "$tgt_dir" -mindepth 1 -maxdepth 1 | while read tgt_path; do
+    tgt_basename="$(basename "$tgt_path")"
+    if `list_include_item "$except_list" "$tgt_basename"` ; then
+      :
+    else 
+      (cd "$proj_dir" \
+       && ([ -L "$tgt_basename" ] \
+           && ln -sf "$tgt_basename" && rm "$tgt_basename"; : ) \
+       && ln -s "$tgt_path"
+      )
+      echo "$tgt_path -> $proj_dir/$tgt_basename"
+    fi
+done
