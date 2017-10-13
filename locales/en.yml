@@ -1,5 +1,8 @@
 en:
   vagrant_redir:
+    errors:
+      not_running: "The VM is not running"
+      unknown: "Unknown error"
     command:
       addr:
         list_title: "List of VM(s) public IP addresses:"
