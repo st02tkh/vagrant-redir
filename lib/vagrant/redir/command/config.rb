@@ -30,7 +30,7 @@ module Vagrant
                   r = record.delete(:id)
                   s = record.collect do |k, v|
                       "#{k}: #{v}"
-                  end.join(', ')
+                  end.join('; ')
                   @env.ui.info(" #{s}")
               end
               @env.ui.info("")
