@@ -210,14 +210,14 @@ Setup port forwarding for vm(s).
 Same process vagrant starts on 'vagrant up' command.
 
 ```shell
-$ vagrant redir pids
+$ vagrant redir up
 ```
 
 
 or for particular VM:
 
 ```shell
-$ vagrant redir pids [<name>]
+$ vagrant redir up [<name>]
 ```
 
 
