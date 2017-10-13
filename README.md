@@ -13,7 +13,7 @@ or
 
 ```shell
 $ git clone https://github.com/st02tkh/vagrant-redir.git
-$ cd vagrant-plugin-redir
+$ cd vagrant-redir
 $ gem build vagrant-redir.gemspec
 $ vagrant plugin install ./vagrant-redir-X.Y.Z.gem
 ```
