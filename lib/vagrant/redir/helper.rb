@@ -69,19 +69,6 @@ module Vagrant
           end
         end
 
-        def redirect_port(host_ip, host_port, guest_ip, guest_port)
-          params = %W( --lport=#{host_port} --caddr=#{guest_ip} --cport=#{guest_port} )
-          params.unshift "--laddr=#{host_ip}" if host_ip
-          params << '--syslog' if ENV['REDIR_LOG']
-          if host_port < 1024
-            redir_cmd = "sudo redir #{params.join(' ')} 2>/dev/null"
-          else
-            redir_cmd = "redir #{params.join(' ')} 2>/dev/null"
-          end
-          @logger.debug "Forwarding port with `#{redir_cmd}`"
-          spawn redir_cmd
-        end
-
         def store_redir_pid(host_port, redir_pid, vm)
           data_dir = vm.data_dir.join('pids')
           data_dir.mkdir unless data_dir.directory?
@@ -93,13 +80,6 @@ module Vagrant
 
         def redir_installed?
           system "which redir > /dev/null"
-        end
-
-        def redir_pids_old(vm)
-          @redir_pids = Dir[vm.data_dir.join('pids').to_s + "/redir_*.pid"].map do |file|
-            port_number = File.basename(file).split(/[^\d]/).join
-            [ File.read(file).strip.chomp, Integer(port_number) <= 1024, port_number, file ]
-          end
         end
 
         def is_redir_pid?(pid)
