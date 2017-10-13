@@ -44,7 +44,7 @@ $ vagrant redir addr
 will show:
 
 ```shell
-List of VM(s) public IP addresses:
+List of running VM(s) public IP addresses:
  id: xdg_1506653541513_93050; name: xdg; ip: 10.0.3.173
  id: db1_1506915461158_4146; name: db1; ip: 10.0.3.55
 ```

@@ -22,25 +22,24 @@ module Vagrant
           opts = OptionParser.new
           argv = parse_options(opts)
           @logger.debug("argv: #{argv}")
-          
-          if with_target_vms(argv) { }.count > 0
-            @env.ui.info I18n.t("vagrant_redir.command.addr.list_title")
-            with_target_vms(argv) do |vm|
 
-              pub_ip = vm.provider.capability(:public_address)
+	  rc = 0
+	  with_target_vms(argv) do |vm|
+            if vm.state.id != :running
+              #raise ::Vagrant::Redir::Errors::NotRunning
+	      next
+            else
+              rc += 1
+	    end
 
-              if vm.state.id != :running
-                #raise ::Vagrant::Redir::Errors::NotRunning
-		next
-              end
-              if pub_ip == nil
-                #raise ::Vagrant::Redir::Errors::Unknown
-                @env.ui.info I18n.t("vagrant_redir.command.addr.list_item_no_pub_ip", id: vm.id, name: vm.name)
-		next
-              end
+            @env.ui.info I18n.t("vagrant_redir.command.addr.list_title") if rc == 1 
+            pub_ip = vm.provider.capability(:public_address)
 
+            if pub_ip == nil
+              #raise ::Vagrant::Redir::Errors::Unknown
+              @env.ui.info I18n.t("vagrant_redir.command.addr.list_item_no_pub_ip", id: vm.id, name: vm.name)
+	    else
               @env.ui.info I18n.t("vagrant_redir.command.addr.list_item", id: vm.id, name: vm.name, ip: pub_ip)
-
             end
           end
         end

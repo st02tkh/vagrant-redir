@@ -5,7 +5,7 @@ en:
       unknown: "Unknown error"
     command:
       addr:
-        list_title: "List of VM(s) public IP addresses:"
+        list_title: "List of running VM(s) public IP addresses:"
         list_item: " id: %{id}; name: %{name}; ip: %{ip}"
         list_item_no_pub_ip: " id: %{id}; name: %{name}; ip: NONE"
       config:
