@@ -30,10 +30,13 @@ module Vagrant
               pub_ip = vm.provider.capability(:public_address)
 
               if vm.state.id != :running
-                raise ::Vagrant::Redir::Errors::NotRunning
+                #raise ::Vagrant::Redir::Errors::NotRunning
+		next
               end
               if pub_ip == nil
-                raise ::Vagrant::Redir::Errors::Unknown
+                #raise ::Vagrant::Redir::Errors::Unknown
+                @env.ui.info I18n.t("vagrant_redir.command.addr.list_item_no_pub_ip", id: vm.id, name: vm.name)
+		next
               end
 
               @env.ui.info I18n.t("vagrant_redir.command.addr.list_item", id: vm.id, name: vm.name, ip: pub_ip)

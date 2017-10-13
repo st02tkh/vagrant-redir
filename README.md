@@ -35,7 +35,7 @@ $ vagrant redir <subcommand> -h
 
 ### addr
 
-Shows a list of VM's ID, name and public IP
+Shows a list of running VM's ID, name and public IP (or 'NONE' value if not set).
 
 ```shell
 $ vagrant redir addr

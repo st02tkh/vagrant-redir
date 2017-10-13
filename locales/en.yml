@@ -7,6 +7,7 @@ en:
       addr:
         list_title: "List of VM(s) public IP addresses:"
         list_item: " id: %{id}; name: %{name}; ip: %{ip}"
+        list_item_no_pub_ip: " id: %{id}; name: %{name}; ip: NONE"
       config:
         list_title: "Port forwarding configuration for VM '%{name}':"
       down:
