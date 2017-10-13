@@ -28,8 +28,7 @@ module Vagrant
             if pids.any?
               @env.ui.info I18n.t("vagrant_redir.command.pids.list_title", name: vm.name)
               pids.each do |p|
-                @env.ui.info p.ispect
-                #@env.ui.info I18n.t("vagrant_redir.command.pids.list_item", pid: p[:pid], host_port: p[:host_port], is_system_port: p[:is_system_port], is_running: p[:is_running])
+                @env.ui.info I18n.t("vagrant_redir.command.pids.list_item", pid: p[:pid], host_port: p[:host_port], is_system_port: p[:is_system_port], is_running: p[:is_running])
               end
               @env.ui.info("")
             end
